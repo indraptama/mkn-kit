@@ -1,3 +1,7 @@
+import 'uikit/dist/css/uikit.css';
+import 'uikit/dist/js/uikit.js';
+
+
 import App from "./App.svelte";
 
 let app = new App({

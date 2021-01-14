@@ -1,33 +1,91 @@
 <script>
+  import { initAuth } from "../store/loginStore";
 
-  const handleSubmit = async () => {
-    console.log('await')
-  }
+  const {
+    loginWithEmailPassword,
+    loginWithGoogle,
+    logout,
+    userLogged,
+  } = initAuth();
+
+  let error = null;
+  $: email = "";
+  $: password = "";
+
+  const handleLogin = async (event) => {
+    try {
+      error = null;
+      await loginWithEmailPassword(email, password);
+    } catch (err) {
+      error = err;
+    }
+    console.log($userLogged)
+  };
 </script>
 
-<div class="uk-card uk-card-default uk-card-body">
-  <form class="uk-form-stacked" on:submit={handleSubmit}>
-    <div class="uk-margin">
-      
-      <div class="uk-form-controls">
-        <input
-          class="uk-input"
-          id="form-stacked-text"
-          type="text"
-          placeholder="Email Anda" />
-      </div>
+<style>
+  .loginPage {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-image: url("./img/bg-home3.jpg");
+    background-position: center;
+    background-size: cover;
+    z-index: 999;
+  }
+
+  .text-white {
+    color: #fff;
+  }
+</style>
+
+<div class="loginPage">
+  <div style="width: 480px; margin-left: 10%; margin-bottom: 100px">
+    <div class="text-white">
+      <h2 class="uk-heading-small text-white uk-margin-small-bottom">Hallo,</h2>
+      <p>
+        Selamat datang di Kantor Notaris Indra Pratama Putra SH, MKn.<br />Silahkan
+        login untuk dapat mengaksaes aplikasi ini.
+      </p>
     </div>
-    <div class="uk-margin">
-      <div class="uk-form-controls">
-        <input
-          class="uk-input"
-          id="form-stacked-text"
-          type="password"
-          placeholder="Password" />
-      </div>
+
+    <div class="uk-card uk-card-default uk-card-body">
+      <form class="uk-form-stacked" on:submit={handleLogin}>
+        <div class="uk-margin">
+          <div class="uk-form-controls">
+            <label class="uk-form-label" for="form-stacked-text">E-Mail</label>
+            <input
+              bind:value={email}
+              class="uk-input"
+              id="form-stacked-text"
+              type="text"
+              placeholder="Email Anda" />
+          </div>
+        </div>
+        <div class="uk-margin">
+          <div class="uk-form-controls">
+            <label
+              class="uk-form-label"
+              for="form-stacked-text">Password</label>
+            <input
+              bind:value={password}
+              class="uk-input"
+              id="form-stacked-text"
+              type="password"
+              placeholder="Password" />
+          </div>
+        </div>
+        <div class="uk-margin-medium-top">
+          <button
+            type="submit"
+            class="uk-button uk-button-primary uk-width-1-1">Masuk</button>
+        </div>
+      </form>
     </div>
-    <div class="uk-margin-medium-top">
-      <button class="uk-button uk-button-primary uk-width-1-1">Masuk</button>
-    </div>
-  </form>
+  </div>
 </div>

@@ -1,7 +1,14 @@
 <script>
   import ContactListItem from "./ContactListItem.svelte";
 
-  let clients = [{}];
+  export let clients = [{
+    fullName: "Jhon Wick Sutisna",
+    address: {
+      kelurahan: "Tarogong Kidul",
+      kecamatan: "Tarogong",
+      city: "Kabupaten Garut"
+    }
+  }];
 </script>
 
 <div class="uk-overflow-auto">
@@ -11,14 +18,14 @@
         <th class="uk-table-shrink" />
         <th class="uk-table-shrink"></th>
         <th class="uk-table-expand">Nama Lengkap</th>
-        <th class="uk-width-small">Domisili</th>
-        <th class="uk-table-shrink uk-text-nowrap">No.Telephone</th>
-        <th class="uk-table-shrink uk-text-nowrap">Pekerjaan Terakhir</th>
+        <th class="uk-text-nowrap">Domisili</th>
+        <th class="uk-text-nowrap">No.Telephone</th>
+        <th class="uk-text-nowrap">Pekerjaan Terakhir</th>
       </tr>
     </thead>
     <tbody>
       {#each clients as client}
-        <ContactListItem />
+        <ContactListItem {...client}/>
       {/each}
     </tbody>
   </table>

@@ -1,3 +1,9 @@
+<script>
+  import { initAuth } from "../store/loginStore";
+
+  const { userLogged } = initAuth();
+
+</script>
 <style>
   .topNav {
     background: linear-gradient(to left, #28a5f5, #1e87f0);
@@ -18,8 +24,19 @@
       Putra SH, MKn</a>
   </div>
 
+  <div class="uk-navbar-center">
+    <div class="uk-navbar-item">
+      <form action="javascript:void(0)">
+          <input class="uk-input uk-form-width-small" type="text" placeholder="Input">
+          <button class="uk-button uk-button-default">Button</button>
+      </form>
+  </div>
+  </div>
+
   <div class="uk-navbar-right">
-    <div class="uk-navbar-item">Memang Betoel</div>
+    {#if $userLogged}
+      <div class="uk-navbar-item">{$userLogged.id}</div>
+    {/if}
   </div>
 </nav>
 

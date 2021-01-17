@@ -1,41 +1,41 @@
 <script>
   import { initAuth } from "../store/loginStore";
 
-  const { userLogged } = initAuth();
-
+  const { userLogged, logout } = initAuth();
 </script>
-<style>
-  .topNav {
-    background: linear-gradient(to left, #28a5f5, #1e87f0);
-    color: rgba(255, 255, 255, 0.8);
-  }
-
-  .topNav * {
-    color: rgba(255, 255, 255, 0.8);
-  }
-</style>
 
 <nav class="uk-navbar-container topNav" uk-navbar>
   <div class="uk-navbar-left">
     <a class="uk-navbar-toggle" href="#" uk-toggle="target: #offcanvas-overlay">
       <span uk-navbar-toggle-icon />
     </a>
-    <a class="uk-navbar-item" href="#/">Kantor Notaris & PPAT Indra Pratama
-      Putra SH, MKn</a>
-  </div>
-
-  <div class="uk-navbar-center">
-    <div class="uk-navbar-item">
-      <form action="javascript:void(0)">
-          <input class="uk-input uk-form-width-small" type="text" placeholder="Input">
-          <button class="uk-button uk-button-default">Button</button>
-      </form>
-  </div>
+    <a class="uk-navbar-item" href="#/"
+      >Kantor Notaris & PPAT Indra Pratama Putra SH, MKn</a
+    >
   </div>
 
   <div class="uk-navbar-right">
     {#if $userLogged}
-      <div class="uk-navbar-item">{$userLogged.id}</div>
+      <ul class="uk-navbar-nav">
+        <li>
+          <a href="#">
+            <div class="uk-navbar-item">
+              <img
+                class="uk-preserve-width uk-border-circle"
+                src={$userLogged.picture}
+                width="36px"
+                alt=""
+              />
+            </div>
+          </a>
+          <div class="uk-navbar-dropdown">
+            <ul class="uk-nav uk-navbar-dropdown-nav">
+              <li><a href={`#/user/${$userLogged.id}`}>My Profile</a></li>
+              <li><a href="#/" on:click={logout}>Sign Out</a></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
     {/if}
   </div>
 </nav>
@@ -85,3 +85,18 @@
     </ul>
   </div>
 </div>
+
+<style>
+  .topNav {
+    background: linear-gradient(to left, #28a5f5, #1e87f0);
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .topNav * {
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .uk-navbar-dropdown * {
+    color: #888 !important;
+  }
+</style>

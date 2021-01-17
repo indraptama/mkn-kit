@@ -6,8 +6,8 @@
   import MainNav from "./components/MainNav.svelte";
 
   import { initAuth } from "./store/loginStore";
-
   const { userLogged } = initAuth();
+  
 </script>
 
 {#if !$userLogged}

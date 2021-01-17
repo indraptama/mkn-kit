@@ -25,7 +25,15 @@
     </thead>
     <tbody>
       {#each clients as client}
-        <ContactListItem {...client}/>
+        <ContactListItem 
+          nik={client.nik}
+          fullName={client.fullName}
+          id={client.id}
+          address={client.address}
+          avatar={client.avatar}
+          phone={client.phone}
+          lastJob={client.lastJob}
+        />
       {/each}
     </tbody>
   </table>

@@ -19,7 +19,7 @@
     } catch (err) {
       error = err;
     }
-    console.log($userLogged)
+    // console.log($userLogged)
   };
 </script>
 
@@ -55,6 +55,7 @@
     </div>
 
     <div class="uk-card uk-card-default uk-card-body">
+      <button on:click={loginWithGoogle} class="uk-button uk-width-1-1 uk-margin">Login with Google</button>
       <form class="uk-form-stacked" on:submit={handleLogin}>
         <div class="uk-margin">
           <div class="uk-form-controls">
@@ -62,7 +63,6 @@
             <input
               bind:value={email}
               class="uk-input"
-              id="form-stacked-text"
               type="text"
               placeholder="Email Anda" />
           </div>
@@ -75,7 +75,6 @@
             <input
               bind:value={password}
               class="uk-input"
-              id="form-stacked-text"
               type="password"
               placeholder="Password" />
           </div>

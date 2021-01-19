@@ -14,7 +14,8 @@
   };
   export let avatar = undefined;
   export let phone = "0812123456789";
-  export let lastJob = "2021-01-18";
+  export let lastJobTitle = "Balik Nama Waris"
+  export let lastJobDate = "2021-01-08";
 
   
 
@@ -62,7 +63,7 @@
     {/if}
   </td>
   <td class="uk-table-link">
-    <a class="uk-link-reset" href={`#/clients/persons/${id}`}>
+    <a class="uk-link-reset" href={`#/clients/${nik}`}>
       <span class="uk-block uk-text-capitalize"> {fullName} </span>
       <span class="uk-text-meta">{nik}</span>
     </a>
@@ -73,5 +74,8 @@
     {address.city}
   </td>
   <td class="uk-text-nowrap uk-text-capitalize">{phone}</td>
-  <td class="uk-text-nowrap uk-text-capitalize">{lastJob}</td>
+  <td class="uk-text-nowrap uk-text-capitalize">
+    <p class="uk-margin-remove">{lastJobTitle}</p>
+    <p class="uk-margin-remove uk-text-meta">{lastJobDate}</p>
+  </td>
 </tr>

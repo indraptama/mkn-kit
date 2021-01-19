@@ -172,14 +172,14 @@
   });
 </script>
 
-<div class="uk-container uk-margin">
+<div class="uk-container uk-margin-large-top">
   <h2 class="heading">Tambah Klien</h2>
 </div>
 
 <form on:submit={handleSubmit}>
-  <div class="uk-container uk-margin">
+  <div class="uk-container uk-margin-medium-top">
     <div class="uk-card uk-card-body uk-card-default uk-margin-medium">
-      <h3 class="uk-card-title">Data Identitas</h3>
+      <h4 class="uk-card-title">Data Identitas</h4>
 
       <!-- NIK -->
       <div uk-grid>

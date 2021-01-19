@@ -15,9 +15,9 @@
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          const id = doc.id;
+          // const id = doc.id;
           const Data = doc.data();
-          const clientData = { ...Data, id };
+          const clientData = { ...Data, id:doc.id };
           clients = [...clients, clientData];
         });
       })
@@ -41,7 +41,7 @@
       </div>
       <div class="uk-width-expand">
         <form class="uk-search uk-search-default uk-width-1-1 bg-white ">
-          <a href="" uk-search-icon />
+          <a href="#/" uk-search-icon />
           <input class="uk-search-input" type="search" placeholder="Pencarian Nama Klien" bind:value={searchValue}/>
         </form>
       </div>
@@ -50,7 +50,11 @@
 </div>
 
 <div class="uk-container uk-container-xlarge uk-margin-top">
-  <ContactList clients={searchResults} />
+  {#if searchResults.length === 0}
+    <p>Klien tidak ditemukan</p>
+  {:else}
+    <ContactList clients={searchResults} />
+  {/if}
 </div>
 
 <style>

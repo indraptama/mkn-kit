@@ -1,3 +1,5 @@
+// Function for create Initial Name on Client List
+// example Indra Pratama become IP
 export const initialName = (name) => {
   let nameContainer = [];
   let splitName = name.split(" ");

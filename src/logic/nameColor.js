@@ -1,3 +1,5 @@
+// Random Background Color based on Initial Name
+// Used in Client list if client doesnt had avatar
 
 export const nameColor = (initial) => {
   const color = {

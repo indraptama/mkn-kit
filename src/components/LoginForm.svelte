@@ -1,12 +1,14 @@
 <script>
   import { initAuth } from "../store/loginStore";
 
-  const {
-    loginWithEmailPassword,
-    loginWithGoogle,
-    logout,
-    userLogged,
-  } = initAuth();
+  import { auth, googleProvider } from '../firebase';
+
+  // const {
+  //   loginWithEmailPassword,
+  //   loginWithGoogle,
+  //   logout,
+  //   userLogged,
+  // } = initAuth();
 
   let error = null;
   $: email = "";
@@ -15,12 +17,15 @@
   const handleLogin = async (event) => {
     try {
       error = null;
-      await loginWithEmailPassword(email, password);
+      await auth.signInWithEmailAndPassword(email, password);
     } catch (err) {
       error = err;
     }
-    // console.log($userLogged)
   };
+
+  const loginWithGoogle = () => {
+    auth.signInWithPopup(googleProvider);
+  }
 </script>
 
 <style>

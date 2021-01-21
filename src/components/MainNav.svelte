@@ -1,7 +1,15 @@
 <script>
-  import { initAuth } from "../store/loginStore";
+  // import { initAuth } from "../store/loginStore";
+  // const { userLogged, logout } = initAuth();
 
-  const { userLogged, logout } = initAuth();
+  import {auth} from '../firebase';
+  import {authState} from 'rxfire/auth';
+
+  let userLogged;
+  const unsubscribe = authState(auth).subscribe(u => userLogged = u);
+
+  const logout = () => auth.signOut();
+
 </script>
 
 <nav class="uk-navbar-container topNav" uk-navbar>
@@ -9,20 +17,20 @@
     <a class="uk-navbar-toggle" href="#" uk-toggle="target: #offcanvas-overlay">
       <span uk-navbar-toggle-icon />
     </a>
-    <a class="uk-navbar-item" href="#/"
-      >Kantor Notaris & PPAT Indra Pratama Putra SH, MKn</a
-    >
+    <a class="uk-navbar-item" href="#/">
+      Kantor Notaris & PPAT Indra Pratama Putra SH, MKn
+      </a>
   </div>
 
   <div class="uk-navbar-right">
-    {#if $userLogged}
+    {#if userLogged}
       <ul class="uk-navbar-nav">
         <li>
-          <a href="#">
+          <a href="#/">
             <div class="uk-navbar-item">
               <img
                 class="uk-preserve-width uk-border-circle"
-                src={$userLogged.picture}
+                src={userLogged.photoURL}
                 width="36px"
                 alt=""
               />
@@ -30,7 +38,7 @@
           </a>
           <div class="uk-navbar-dropdown">
             <ul class="uk-nav uk-navbar-dropdown-nav">
-              <li><a href={`#/user/${$userLogged.id}`}>My Profile</a></li>
+              <li><a href={`#/user/${userLogged.uid}`}>My Profile</a></li>
               <li><a href="#/" on:click={logout}>Sign Out</a></li>
             </ul>
           </div>
@@ -78,6 +86,14 @@
         <a href="#/">Laporan</a>
         <ul class="uk-nav-sub">
           <li><a href="#/ppat/dash">Laporan Notaris</a></li>
+          <li><a href="#/ppat/pekerjaan">Laporan PPAT</a></li>
+          <li><a href="#/ppat/akta">Laporan Wasiat</a></li>
+        </ul>
+      </li>
+      <li class="uk-parent">
+        <a href="#/">Tools</a>
+        <ul class="uk-nav-sub">
+          <li><a href="#/tools/komparisi">Komparisi Generator</a></li>
           <li><a href="#/ppat/pekerjaan">Laporan PPAT</a></li>
           <li><a href="#/ppat/akta">Laporan Wasiat</a></li>
         </ul>

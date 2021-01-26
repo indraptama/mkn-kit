@@ -1,36 +1,13 @@
 <script>
-  import { onMount } from "svelte";
   import _ from "lodash";
-  import db from "../firebase";
+
   import KTPParser from "../components/KTPParser.svelte";
 
-  import { initAuth } from "../store/loginStore";
-  const { userLogged } = initAuth();
+  import client$ from "../store/clientStore.js";
 
-  let clientsList = [];
+  let clientsList = client$;
   $: selectedClientID = "";
-  $: selectedClientDetails = _.filter(clientsList, ["id", selectedClientID]);
-
-  onMount(async () => {
-    db.collection("client")
-      .orderBy("fullName", "asc")
-      .get()
-      .then((qs) => {
-        qs.forEach((doc) => {
-          let data = doc.data();
-          let clientData = { ...data, id: doc.id };
-          clientsList = [...clientsList, clientData];
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  });
-
-  function handleSubmit() {
-    let result = _.filter(clientsList, ["id", selectedClientID]);
-    console.log(result[0]);
-  }
+  $: selectedClientDetails = _.filter($clientsList, ["id", selectedClientID]);
 </script>
 
 <div class="uk-container uk-container-small uk-margin-medium-top">
@@ -41,7 +18,7 @@
         class="uk-select uk-text-capitalize"
         bind:value={selectedClientID}>
         <option value={undefined}>Pilih Nama</option>
-        {#each clientsList as client}
+        {#each $clientsList as client}
           <option value={client.id}>
             {`${client.fullName.toUpperCase()} (${client.nik})`}
           </option>

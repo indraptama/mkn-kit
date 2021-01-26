@@ -1,0 +1,15 @@
+@media print {
+  .page {
+    font-family: "IBM Plex Sans";
+    font-size: 10pt;
+    line-height: 1.4em;
+  }
+
+  .uk-navbar-container {
+    display: none;
+  }
+}
+
+@page {
+  margin: 2cm 2.5cm;
+}

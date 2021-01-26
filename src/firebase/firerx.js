@@ -15,7 +15,6 @@ const app = firebase.initializeApp({
   appId: "1:401104101494:web:a7c635fc3c8c3fe6fdff57",
 });
 
-
 const firestore = firebase.firestore(app); // Initialize firestore
 const auth = firebase.auth(app); // Initialize firebase auth
 const loggedIn$ = authState(auth).pipe(filter((user) => !!user)); // Observable only return when user is logged in.

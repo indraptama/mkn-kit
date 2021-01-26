@@ -4,11 +4,18 @@
   import db from "../firebase";
   import _ from "lodash";
 
-  import { collectionData } from 'rxfire/firestore';
-  import { startWith } from 'rxjs/operators';
+  import client$ from '../store/clientStore.js';
+
+  // import { collectionData } from 'rxfire/firestore';
+  // import { startWith } from 'rxjs/operators';
 
   // let clients = [];
-  $: searchResults = $clients.filter(client => client.fullName.indexOf(searchValue) !== -1);
+  
+
+  
+
+
+  $: searchResults = $client$.filter(client => client.fullName.indexOf(searchValue) !== -1);
   // $: searchResults = searched();
   $: searchValue = "";
 
@@ -32,8 +39,8 @@
   //     });
   // });
 
-  const query = db.collection('client').orderBy("fullName", "asc");
-  const clients = collectionData(query, 'id').pipe(startWith([]));
+  // const query = db.collection('client').orderBy("fullName", "asc");
+  // const clients = collectionData(query, 'id').pipe(startWith([]));
 
 
 </script>

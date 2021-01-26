@@ -3,10 +3,13 @@
   // const { userLogged, logout } = initAuth();
 
   import {auth} from '../firebase';
-  import {authState} from 'rxfire/auth';
+  // import {authState} from 'rxfire/auth';
 
-  let userLogged;
-  const unsubscribe = authState(auth).subscribe(u => userLogged = u);
+  // let userLogged;
+  // const unsubscribe = authState(auth).subscribe(u => userLogged = u);
+
+  import loggedIn$ from "../store/userStore.js";
+  const userLogged = loggedIn$;
 
   const logout = () => auth.signOut();
 
@@ -23,14 +26,14 @@
   </div>
 
   <div class="uk-navbar-right">
-    {#if userLogged}
+    {#if $userLogged}
       <ul class="uk-navbar-nav">
         <li>
           <a href="#/">
             <div class="uk-navbar-item">
               <img
                 class="uk-preserve-width uk-border-circle"
-                src={userLogged.photoURL}
+                src={$userLogged.photoURL}
                 width="36px"
                 alt=""
               />
@@ -38,7 +41,7 @@
           </a>
           <div class="uk-navbar-dropdown">
             <ul class="uk-nav uk-navbar-dropdown-nav">
-              <li><a href={`#/user/${userLogged.uid}`}>My Profile</a></li>
+              <li><a href={`#/user/${$userLogged.uid}`}>My Profile</a></li>
               <li><a href="#/" on:click={logout}>Sign Out</a></li>
             </ul>
           </div>
@@ -82,6 +85,9 @@
           <li><a href="#/ppat/nonakta">Pekerjaan Non Akta</a></li>
         </ul>
       </li>
+      <li class="div">
+        <a href="#/nonakta/">Pekerjaan Non Akta</a>
+      </li>
       <li class="uk-parent">
         <a href="#/">Laporan</a>
         <ul class="uk-nav-sub">
@@ -94,7 +100,7 @@
         <a href="#/">Tools</a>
         <ul class="uk-nav-sub">
           <li><a href="#/tools/komparisi">Komparisi Generator</a></li>
-          <li><a href="#/ppat/pekerjaan">Laporan PPAT</a></li>
+          <li><a href="#/tools/testprint">Laporan PPAT</a></li>
           <li><a href="#/ppat/akta">Laporan Wasiat</a></li>
         </ul>
       </li>

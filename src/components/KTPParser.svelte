@@ -23,13 +23,19 @@
     return "Nyonya";
   }
 
+  function monthParser(month) {
+    const monthName = DateTime.fromISO(month).setLocale('id').toFormat('LLLL');
+    return monthName;
+  }
+
   function dateParser(dates) {
+    const monthName = DateTime.fromISO(dates).setLocale('id').toFormat('LLLL');
     let splitDate = dates.split("-");
     let year = splitDate[0];
     let month = splitDate[1];
     let day = splitDate[2];
 
-    return `${nomorToKata(year)}`
+    return `${nomorToKata(day)} ${monthName} ${nomorToKata(year)}`
   }
 </script>
 

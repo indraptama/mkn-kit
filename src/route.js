@@ -7,9 +7,12 @@ import ClientSingle from './routes/ClientSingle.svelte';
 // Notaris
 import Akta from './routes/Akta.svelte';
 
+// Non Akta
+import TaskNonAkta from './routes/TaskNonAkta.svelte';
 
 // Tools
 import Komparisi from './routes/Komparisi.svelte';
+import TestPrint from './routes/TestPrint.svelte';
 
 const routes = {
   "/": Home,
@@ -20,8 +23,11 @@ const routes = {
 
   "/notaris/akta": Akta,
 
+  "/nonakta/": TaskNonAkta, 
 
   "/tools/komparisi": Komparisi,
+
+  "/tools/testprint": TestPrint,
 };
 
 export default routes;

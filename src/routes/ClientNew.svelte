@@ -4,6 +4,9 @@
   import { pop } from "svelte-spa-router";
   import db from "../firebase";
 
+  import loggedIn$ from "../store/userStore.js";
+  const userLogged = loggedIn$;
+
   function handleCancel() {
     pop();
   }
@@ -115,6 +118,12 @@
         npwp: values.npwp,
         phone: values.phone,
         email: values.email,
+        user: {
+          name: $userLogged.displayName,
+          uid: $userLogged.uid,
+          photoURL: $userLogged.photoURL,
+          email: $userLogged.email,
+        }
       };
 
       console.log(submitData)

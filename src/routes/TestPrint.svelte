@@ -2,7 +2,18 @@
   import firebase from 'firebase/app';
   import 'firebase/storage';
 
-  const storage = firebase.storage().ref()
+  const storage = firebase.storage();
+  const storageRef = storage.ref();
+
+  let filePath;
+  let ktpImage;
+  let npwpImage;
+  let kkImage;
+  let files;
+  function uploadHandler(e) {
+   let theFile = e.target.files[0];
+   let reader;
+  }
 
 </script>
 <div class="page">
@@ -42,11 +53,10 @@
   </ol>
 </div>
 
-<div class="js-upload" uk-form-custom>
-  <input type="file" multiple>
-  <button class="uk-button uk-button-default" type="button" tabindex="-1">Select</button>
-</div>
+<input type="file" bind:files={filePath}>
 
-
-<style>
-</style>
+{#if filePath && filePath[0]}
+	<p>
+		{filePath[0].name}
+	</p>
+{/if}

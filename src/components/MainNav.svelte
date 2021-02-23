@@ -82,6 +82,7 @@
           <li><a href="#/ppat/dash">Beranda ppat</a></li>
           <li><a href="#/ppat/pekerjaan">Daftar Pekerjaan</a></li>
           <li><a href="#/ppat/akta">Akta</a></li>
+          <li><a href="#/ppat/new">Tambah Akta Baru</a></li>
           <li><a href="#/ppat/nonakta">Pekerjaan Non Akta</a></li>
         </ul>
       </li>

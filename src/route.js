@@ -7,6 +7,9 @@ import ClientSingle from './routes/ClientSingle.svelte';
 // Notaris
 import Akta from './routes/Akta.svelte';
 
+// PPAT
+import PPATAktaNew from './routes/PPATAktaNew.svelte';
+
 // Non Akta
 import TaskNonAkta from './routes/TaskNonAkta.svelte';
 
@@ -23,7 +26,10 @@ const routes = {
 
   "/notaris/akta": Akta,
 
+  "/ppat/new": PPATAktaNew, 
+
   "/nonakta/": TaskNonAkta, 
+  
 
   "/tools/komparisi": Komparisi,
 
